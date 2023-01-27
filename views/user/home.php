@@ -11,6 +11,4 @@
 <?php
 include './components/footer.php';
 include '../../model/connectDb.php';
-
-
 ?>
