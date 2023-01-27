@@ -9,4 +9,5 @@ include 'header.php'; ?>
     </div>
     <button type="submit" style='width:100%' class="btn btn-primary">Thêm</button>
   </form>
+  <h3 style="color: red;"><?php echo isset($_GET["mess"]) ? $_GET['mess'] : "" ?></h3>
 </div>
