@@ -1,41 +1,175 @@
+<?php
+include '../../model/connectDb.php';
+$q1 = "SELECT * FROM danh_muc";
+$statement1 = $connect->prepare($q1);
+$statement1->execute();
+$category = $statement1->fetchAll(); //tất cả danh mục
+
+$q2 = "SELECT * FROM san_pham WHERE luot_xem > 0 ORDER BY luot_xem DESC LIMIT 0, 10;";
+$statement2 = $connect->prepare($q2);
+$statement2->execute();
+$proTop10 = $statement2->fetchAll(); //top 10 sản phẩm
+
+//$id = $_GET['id'];
+$id = 5;
+$q3 = "SELECT san_pham.id, san_pham.name, san_pham.price, san_pham.mo_ta, san_pham.luot_xem, san_pham.id_dm, danh_muc.name as 'cate_name' FROM `san_pham` LEFT JOIN `danh_muc` ON san_pham.id_dm = danh_muc.id where san_pham.id = $id";
+$statement3 = $connect->prepare($q3);
+$statement3->execute();
+$productOne = $statement3->fetch(); //chi tiết sản phẩm đang xem
+
+
+$q4 = "SELECT * FROM san_pham where id_dm = " . $productOne['id_dm'];
+$statement4 = $connect->prepare($q4);
+$statement4->execute();
+$sp_dm = $statement4->fetchAll(); //tất cả sản phẩm cùng danh mục
+?>
+
 <div style="margin-left: 10px;">
     <div class="row mb">
         <div class="boxtrai mr">
             <div class="mb row">
                 <div class="boxtitle">
-                    <h2>Tên sản phẩm</h2>
+                    <h2><?= $productOne['name'] ?></h2>
                 </div>
                 <div class="boxcontent">
                     <div style="text-align: center;"><img src="https://i.pinimg.com/564x/d3/04/9c/d3049c10c2bd0efd3fc8d9b74d334961.jpg" alt="" id="img_sp"> </div>
-                    <p id="mo_ta">Cá mập là một nhóm cá thuộc lớp Cá sụn, thân hình thủy động học dễ dàng rẽ nước, có từ 5 đến 7 khe mang dọc mỗi bên hoặc gần đầu (khe đầu tiên sau mắt gọi là lỗ thở), da có nhiều gai nhỏ bao bọc cơ thể chống lại ký sinh, các hàng răng trong miệng có thể mọc lại được. Cá mập bao gồm các loài với kích cỡ chỉ bằng bàn tay, như Euprotomicrus bispinatus, một loài cá sống dưới đáy biển dài chỉ 22 xentimét, đến cá nhám voi khổng lồ (Rhincodon typus), loài cá lớn nhất với chiều dài 12 mét (39 ft) tương đương với một con cá voi nhưng chỉ ăn sinh vật vật phù du, mực ống và một số loài cá nhỏ khác. Cá mập bò (Carcharhinus leucas) còn được biết đến nhiều nhất nhờ khả năng bơi được trong cả nước ngọt và nước mặn,[1] thậm chí là ở các vùng châu thổ. Cá mập được cho là xuất hiện cách đây hơn 420 triệu năm, trước cả thời kỳ xuất hiện khủng long.[2]</p>
+                    <h4 style="color:red;"><?= $productOne['price'] ?> VNĐ</h4>
+                    <h5>Lượt xem: <?= $productOne['luot_xem'] ?></h5>
+                    <p id="mo_ta"><?= $productOne['mo_ta'] ?></p>
                 </div>
             </div>
 
             <div class="row mb" id="binhluan">
                 <div class="boxtitle">BÌNH LUẬN</div>
                 <div class="boxcontent binhluan">
-                    <table>
-                        <tr>
-                            <td>' . $noi_dung . '</td>
-                            <td>' . họ tên người bình luận . '</td>
-                            <td>' . $ngay_bl . '</td>
-                        </tr>
-                        <tr>
-                            <td>' . $noi_dung . '</td>
-                            <td>' . họ tên người bình luận . '</td>
-                            <td>' . $ngay_bl . '</td>
-                        </tr>
-                        <tr>
-                            <td>' . $noi_dung . '</td>
-                            <td>' . họ tên người bình luận . '</td>
-                            <td>' . $ngay_bl . '</td>
-                        </tr>
-                        <tr>
-                            <td>' . $noi_dung . '</td>
-                            <td>' . họ tên người bình luận . '</td>
-                            <td>' . $ngay_bl . '</td>
-                        </tr>
-                    </table>
+                    <div class="list_bl flex">
+                        <div class="user_bl">
+                            <img src="https://i.pinimg.com/564x/d3/04/9c/d3049c10c2bd0efd3fc8d9b74d334961.jpg" alt="ảnh">
+                        </div>
+                        <div class="noi_dung">
+                            <p class="name_user">Đăng etrhy ửgetbg - <span class="date">2023-12-12</span></p>
+                            <li class="nd_ct">Sản phẩm đẹp v ò</li>
+                        </div>
+                    </div>
+                    <div class="list_bl flex">
+                        <div class="user_bl">
+                            <img src="https://i.pinimg.com/564x/d3/04/9c/d3049c10c2bd0efd3fc8d9b74d334961.jpg" alt="ảnh">
+                        </div>
+                        <div class="noi_dung">
+                            <p class="name_user">Đăng etrhy ửgetbg - <span class="date">2023-12-12</span></p>
+                            <li class="nd_ct">Sản phẩm đẹp v ò</li>
+                        </div>
+                    </div>
+                    <div class="list_bl flex">
+                        <div class="user_bl">
+                            <img src="https://i.pinimg.com/564x/d3/04/9c/d3049c10c2bd0efd3fc8d9b74d334961.jpg" alt="ảnh">
+                        </div>
+                        <div class="noi_dung">
+                            <p class="name_user">Đăng etrhy ửgetbg - <span class="date">2023-12-12</span></p>
+                            <li class="nd_ct">Sản phẩm đẹp v ò</li>
+                        </div>
+                    </div>
+                    <div class="list_bl flex">
+                        <div class="user_bl">
+                            <img src="https://i.pinimg.com/564x/d3/04/9c/d3049c10c2bd0efd3fc8d9b74d334961.jpg" alt="ảnh">
+                        </div>
+                        <div class="noi_dung">
+                            <p class="name_user">Đăng etrhy ửgetbg - <span class="date">2023-12-12</span></p>
+                            <li class="nd_ct">Sản phẩm đẹp v ò</li>
+                        </div>
+                    </div>
+                    <div class="list_bl flex">
+                        <div class="user_bl">
+                            <img src="https://i.pinimg.com/564x/d3/04/9c/d3049c10c2bd0efd3fc8d9b74d334961.jpg" alt="ảnh">
+                        </div>
+                        <div class="noi_dung">
+                            <p class="name_user">Đăng etrhy ửgetbg - <span class="date">2023-12-12</span></p>
+                            <li class="nd_ct">Sản phẩm đẹp v ò</li>
+                        </div>
+                    </div>
+                    <div class="list_bl flex">
+                        <div class="user_bl">
+                            <img src="https://i.pinimg.com/564x/d3/04/9c/d3049c10c2bd0efd3fc8d9b74d334961.jpg" alt="ảnh">
+                        </div>
+                        <div class="noi_dung">
+                            <p class="name_user">Đăng etrhy ửgetbg - <span class="date">2023-12-12</span></p>
+                            <li class="nd_ct">Sản phẩm đẹp v ò</li>
+                        </div>
+                    </div>
+                    <div class="list_bl flex">
+                        <div class="user_bl">
+                            <img src="https://i.pinimg.com/564x/d3/04/9c/d3049c10c2bd0efd3fc8d9b74d334961.jpg" alt="ảnh">
+                        </div>
+                        <div class="noi_dung">
+                            <p class="name_user">Đăng etrhy ửgetbg - <span class="date">2023-12-12</span></p>
+                            <li class="nd_ct">Sản phẩm đẹp v ò</li>
+                        </div>
+                    </div>
+                    <div class="list_bl flex">
+                        <div class="user_bl">
+                            <img src="https://i.pinimg.com/564x/d3/04/9c/d3049c10c2bd0efd3fc8d9b74d334961.jpg" alt="ảnh">
+                        </div>
+                        <div class="noi_dung">
+                            <p class="name_user">Đăng etrhy ửgetbg - <span class="date">2023-12-12</span></p>
+                            <li class="nd_ct">Sản phẩm đẹp v ò</li>
+                        </div>
+                    </div>
+                    <div class="list_bl flex">
+                        <div class="user_bl">
+                            <img src="https://i.pinimg.com/564x/d3/04/9c/d3049c10c2bd0efd3fc8d9b74d334961.jpg" alt="ảnh">
+                        </div>
+                        <div class="noi_dung">
+                            <p class="name_user">Đăng etrhy ửgetbg - <span class="date">2023-12-12</span></p>
+                            <li class="nd_ct">Sản phẩm đẹp v ò</li>
+                        </div>
+                    </div>
+                    <div class="list_bl flex">
+                        <div class="user_bl">
+                            <img src="https://i.pinimg.com/564x/d3/04/9c/d3049c10c2bd0efd3fc8d9b74d334961.jpg" alt="ảnh">
+                        </div>
+                        <div class="noi_dung">
+                            <p class="name_user">Đăng etrhy ửgetbg - <span class="date">2023-12-12</span></p>
+                            <li class="nd_ct">Sản phẩm đẹp v ò</li>
+                        </div>
+                    </div>
+                    <div class="list_bl flex">
+                        <div class="user_bl">
+                            <img src="https://i.pinimg.com/564x/d3/04/9c/d3049c10c2bd0efd3fc8d9b74d334961.jpg" alt="ảnh">
+                        </div>
+                        <div class="noi_dung">
+                            <p class="name_user">Đăng etrhy ửgetbg - <span class="date">2023-12-12</span></p>
+                            <li class="nd_ct">Sản phẩm đẹp v ò</li>
+                        </div>
+                    </div>
+                    <div class="list_bl flex">
+                        <div class="user_bl">
+                            <img src="https://i.pinimg.com/564x/d3/04/9c/d3049c10c2bd0efd3fc8d9b74d334961.jpg" alt="ảnh">
+                        </div>
+                        <div class="noi_dung">
+                            <p class="name_user">Đăng etrhy ửgetbg - <span class="date">2023-12-12</span></p>
+                            <li class="nd_ct">Sản phẩm đẹp v ò</li>
+                        </div>
+                    </div>
+                    <div class="list_bl flex">
+                        <div class="user_bl">
+                            <img src="https://i.pinimg.com/564x/d3/04/9c/d3049c10c2bd0efd3fc8d9b74d334961.jpg" alt="ảnh">
+                        </div>
+                        <div class="noi_dung">
+                            <p class="name_user">Đăng etrhy ửgetbg - <span class="date">2023-12-12</span></p>
+                            <li class="nd_ct">Sản phẩm đẹp v ò</li>
+                        </div>
+                    </div>
+                    <div class="list_bl flex">
+                        <div class="user_bl">
+                            <img src="https://i.pinimg.com/564x/d3/04/9c/d3049c10c2bd0efd3fc8d9b74d334961.jpg" alt="ảnh">
+                        </div>
+                        <div class="noi_dung">
+                            <p class="name_user">Đăng etrhy ửgetbg - <span class="date">2023-12-12</span></p>
+                            <li class="nd_ct">Sản phẩm đẹp v ò</li>
+                        </div>
+                    </div>
+
+
                     <div class="" style="margin-top: 60px;">
                         <!-- form bình luận -->
                         <form action="" method="post">
@@ -44,18 +178,19 @@
                         </form>
                     </div>
                 </div>
+
+
             </div>
+
             <!-- <div class="row">
             <iframe src="" frameborder="0"></iframe>
         </div> -->
-            <div class="row mb">
+            <div class="row mb ">
                 <div class="boxtitle">SẢN PHẨM CÙNG LOẠI</div>
-                <div class="boxcontent">
-                    <li id="ten_sp"><a href="' . $linksp . '">ten_sp</a></li>
-                    <li id="ten_sp"><a href="' . $linksp . '">ten_sp</a></li>
-                    <li id="ten_sp"><a href="' . $linksp . '">ten_sp</a></li>
-                    <li id="ten_sp"><a href="' . $linksp . '">ten_sp</a></li>
-                    <li id="ten_sp"><a href="' . $linksp . '">ten_sp</a></li>
+                <div class="boxcontent ">
+                    <?php foreach ($sp_dm as $spdm) { ?>
+                        <li id="ten_sp"><a href="' . $linksp . '"><?= $spdm['name'] ?></a></li>
+                    <?php } ?>
                 </div>
             </div>
         </div>
@@ -127,27 +262,18 @@
                 <div class="boxcontent2 menudoc">
                     <ul>
                         <?php
-                        // foreach ($dsdm as $dm) {
-                        //     extract($dm);
-                        //     $linkdm = "index.php?act=sanpham&iddm=" . $ma_loai;
-                        //     echo '<li>
-                        //             <a href="' . $linkdm . '">' . $ten_loai . '</a>
-                        //         </li>';
-                        // }
+                        foreach ($category as $dm) {
+                            extract($dm);
+                            $linkdm = "" . $id;
+                            echo '<li>
+                                    <a href="' . $linkdm . '">' . $name . '</a>
+                                </li>';
+                        }
                         ?>
-                        <li><a href="#">' . $ten_loai . '</a></li>
-                        <li><a href="#">' . $ten_loai . '</a></li>
-                        <li><a href="#">' . $ten_loai . '</a></li>
-                        <li><a href="#">' . $ten_loai . '</a></li>
-                        <li><a href="#">' . $ten_loai . '</a></li>
-                        <li><a href="#">' . $ten_loai . '</a></li>
-                        <li><a href="#">' . $ten_loai . '</a></li>
-                        <li><a href="#">' . $ten_loai . '</a></li>
-                        <li><a href="#">' . $ten_loai . '</a></li>
                     </ul>
                 </div>
                 <div class="boxfooter searbox">
-                    <form action="index.php?act=sanpham" method="post">
+                    <form action="" method="post">
                         <input type="text" name="search">
                         <input type="submit" name="timkiem" value="Tìm kiếm">
                     </form>
@@ -156,44 +282,53 @@
             <div class="row">
                 <div class="boxtitle">TOP 10 YÊU THÍCH</div>
                 <div class="boxcontent">
-                    <div class="row mb10 top10">
-                        <a href="#"><img src="https://tse3.mm.bing.net/th?id=OIP.uxuWn4Jhl-b9rFbaK43WnQHaIR&pid=Api&P=0" alt="ảnh"></a>
-                        <a href="#">' . $ten_sp . '</a>
-                    </div>
-                    <div class="row mb10 top10">
-                        <a href="#"><img src="https://tse3.mm.bing.net/th?id=OIP.uxuWn4Jhl-b9rFbaK43WnQHaIR&pid=Api&P=0" alt="ảnh"></a>
-                        <a href="#">' . $ten_sp . '</a>
-                    </div>
-                    <div class="row mb10 top10">
-                        <a href="#"><img src="https://tse3.mm.bing.net/th?id=OIP.uxuWn4Jhl-b9rFbaK43WnQHaIR&pid=Api&P=0" alt="ảnh"></a>
-                        <a href="#">' . $ten_sp . '</a>
-                    </div>
-                    <div class="row mb10 top10">
-                        <a href="#"><img src="https://tse3.mm.bing.net/th?id=OIP.uxuWn4Jhl-b9rFbaK43WnQHaIR&pid=Api&P=0" alt="ảnh"></a>
-                        <a href="#">' . $ten_sp . '</a>
-                    </div>
-                    <div class="row mb10 top10">
-                        <a href="#"><img src="https://tse3.mm.bing.net/th?id=OIP.uxuWn4Jhl-b9rFbaK43WnQHaIR&pid=Api&P=0" alt="ảnh"></a>
-                        <a href="#">' . $ten_sp . '</a>
-                    </div>
-                    <div class="row mb10 top10">
-                        <a href="#"><img src="https://tse3.mm.bing.net/th?id=OIP.uxuWn4Jhl-b9rFbaK43WnQHaIR&pid=Api&P=0" alt="ảnh"></a>
-                        <a href="#">' . $ten_sp . '</a>
-                    </div>
-
                     <?php
-                    // foreach ($dstop10 as $sp) {
-                    //     extract($sp);
-                    //     $linksp = "index.php?act=sanphamct&idsp=" . $ma_sp;
-                    //     $img = $img_path . $hinh;
-                    //     echo '<div class="row mb10 top10">
-                    //             <a href="' . $linksp . '"><img src="' . $img . '" alt=""></a>
-                    //             <a href="' . $linksp . '">' . $ten_sp . '</a>
-                    //         </div>';
-                    // }
+                    foreach ($proTop10 as $sp) {
+                        extract($sp);
+                        $linksp = "" . $id;
+                        echo '<div class="row mb10 top10">
+                                <a href="' . $linksp . '"><img src="https://tse3.mm.bing.net/th?id=OIP.uxuWn4Jhl-b9rFbaK43WnQHaIR&pid=Api&P=0" alt=""></a>
+                                <a href="' . $linksp . '">' . $name . '</a>
+                            </div>';
+                    }
                     ?>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<style>
+    .flex {
+        margin-top: 20px;
+        display: flex;
+    }
+
+    .justify-between {
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .noi_dung {
+        margin-left: 15px;
+    }
+
+
+    .user_bl img {
+        width: 50px;
+        border-radius: 50%;
+    }
+
+    .nd_ct {
+        list-style: circle;
+    }
+
+    .name_user {
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    .date {
+        color: gray;
+        font-size: 10px;
+    }
+</style>

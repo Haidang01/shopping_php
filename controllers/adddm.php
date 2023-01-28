@@ -19,7 +19,7 @@ try {
             $result = $statement->execute();
             if ($result) {
                 $thongbao = 'Danh mục đã được tạo thành công';
-                header("location: ../views/admin/formadddm.php?mess=$thongbao");
+                header("location: ../views/admin/quanlidm.php?mess=$thongbao");
             } else {
                 $thongbao = 'Lỗi web';
                 header("location: ../views/admin/formadddm.php?mess=$thongbao");

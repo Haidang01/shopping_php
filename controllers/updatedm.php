@@ -1,16 +1,17 @@
 <?php
 try {
     include '../model/connectDb.php';
-    $id = $_GET["id"];
-    $q0 = "DELETE FROM san_pham WHERE `san_pham`.`id_dm` = $id";
-    $statement = $connect->prepare($q0);
-    $result0 = $statement->execute();
+    $name = $_POST['name'];
+    $id = $_POST['id'];
 
-    $q = "DELETE FROM danh_muc WHERE `danh_muc`.`id` = $id";
+    $q = "UPDATE `danh_muc` SET `name` = '$name' WHERE `danh_muc`.`id` = $id;";
     $statement = $connect->prepare($q);
     $result = $statement->execute();
     if ($result) {
-        $thongbao = 'Danh mục đã được Xóa thành công';
+        $thongbao = 'Danh mục đã được cập nhật';
+        header("location: ../views/admin/quanlidm.php?mess=$thongbao");
+    } else {
+        $thongbao = 'Lỗi web';
         header("location: ../views/admin/quanlidm.php?mess=$thongbao");
     }
 } catch (PDOException $e) {

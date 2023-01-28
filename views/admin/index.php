@@ -1,4 +1,2 @@
 <?php
-include './components/header.php';
-
-?>
+header("location: ./quanlisp.php");
