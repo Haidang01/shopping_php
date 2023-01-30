@@ -3,7 +3,6 @@ try {
     include '../model/connectDb.php';
     $name = $_POST['name'];
     $id = $_POST['id'];
-
     $q = "UPDATE `danh_muc` SET `name` = '$name' WHERE `danh_muc`.`id` = $id;";
     $statement = $connect->prepare($q);
     $result = $statement->execute();

@@ -1,5 +1,11 @@
 <?php
-include 'header.php'; ?>
+include 'header.php';
+include '../../model/connectDb.php';
+$q1 = 'SELECT * FROM `nguoi_dung`';
+$statement1 = $connect->prepare($q1);
+$statement1->execute();
+$users = $statement1->fetchAll();
+?>
 <div style='backround:#f8f9fa;' class="col  py-3">
   <div class="container p-4">
     <div style='display:flex' class='d_flex mb-4 justify-content-between'>
@@ -16,32 +22,32 @@ include 'header.php'; ?>
       <thead class="bg-light ">
         <tr>
           <th>Name</th>
-          <th>Email</th>
+          <th>Phone</th>
           <th>Address</th>
           <th>Role</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
+        <?php foreach ($users as $user) { ?>
         <tr>
           <td>
             <div class="d-flex align-items-center">
               <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px"
                 class="rounded-circle" />
               <div class="ms-3">
-                <p class="fw-bold mb-1">John Doe</p>
-                <p class="text-muted mb-0">john.doe@gmail.com</p>
+                <p class="fw-bold mb-1"><?php echo $user['name']; ?></p>
+                <p class="text-muted mb-0"><?php echo $user['email']; ?></p>
               </div>
             </div>
           </td>
           <td>
-            <p class="fw-normal mb-1">Software engineer</p>
-            <p class="text-muted mb-0">IT department</p>
+            <p class="fw-normal mb-1"><?php echo $user['sdt']; ?></< /p>
           </td>
           <td>
-            <p class="text-muted mb-0">IT department</p>
+            <p class="text-muted mb-0"><?php echo $user['dia_chi']; ?></< /p>
           </td>
-          <td>Senior</td>
+          <td><?php echo $user['role']; ?></td>
           <td>
             <button type="button" class="btn btn-secondary btn-sm btn-rounded">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -63,81 +69,7 @@ include 'header.php'; ?>
             </button>
           </td>
         </tr>
-        <tr>
-          <td>
-            <div class="d-flex align-items-center">
-              <img src="https://mdbootstrap.com/img/new/avatars/6.jpg" class="rounded-circle" alt=""
-                style="width: 45px; height: 45px" />
-              <div class="ms-3">
-                <p class="fw-bold mb-1">Alex Ray</p>
-                <p class="text-muted mb-0">alex.ray@gmail.com</p>
-              </div>
-            </div>
-          </td>
-          <td>
-            <p class="fw-normal mb-1">Consultant</p>
-            <p class="text-muted mb-0">Finance</p>
-          </td>
-          <td>
-            <p class="text-muted mb-0">IT department</p>
-          </td>
-          <td>Junior</td>
-          <td>
-            <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark">
-              Edit
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class="d-flex align-items-center">
-              <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt=""
-                style="width: 45px; height: 45px" />
-              <div class="ms-3">
-                <p class="fw-bold mb-1">Kate Hunington</p>
-                <p class="text-muted mb-0">kate.hunington@gmail.com</p>
-              </div>
-            </div>
-          </td>
-          <td>
-            <p class="fw-normal mb-1">Designer</p>
-            <p class="text-muted mb-0">UI/UX</p>
-          </td>
-          <td>
-            <p class="text-muted mb-0">IT department</p>
-          </td>
-          <td>Senior</td>
-          <td>
-            <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark">
-              Edit
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class="d-flex align-items-center">
-              <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt=""
-                style="width: 45px; height: 45px" />
-              <div class="ms-3">
-                <p class="fw-bold mb-1">Kate Hunington</p>
-                <p class="text-muted mb-0">kate.hunington@gmail.com</p>
-              </div>
-            </div>
-          </td>
-          <td>
-            <p class="fw-normal mb-1">Designer</p>
-            <p class="text-muted mb-0">UI/UX</p>
-          </td>
-          <td>
-            <p class="text-muted mb-0">IT department</p>
-          </td>
-          <td>Senior</td>
-          <td>
-            <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark">
-              Edit
-            </button>
-          </td>
-        </tr>
+        <?php } ?>
       </tbody>
     </table>
   </div>
