@@ -4,8 +4,9 @@ try {
     $name = $_POST['name'];
     $address = $_POST['address'];
     $id = $_POST['id'];
+    $role = $_POST['role'];
     $phone = $_POST['phone'];
-    $q = "UPDATE `nguoi_dung` SET `name` = '$name',`dia_chi`='$address',`sdt`='$phone' WHERE `nguoi_dung`.`id` = $id;";
+    $q = "UPDATE `nguoi_dung` SET `name` = '$name',`dia_chi`='$address',`sdt`='$phone',`role`='$role' WHERE `nguoi_dung`.`id` = $id;";
     $statement = $connect->prepare($q);
     $result = $statement->execute();
     if ($result) {

@@ -8,9 +8,15 @@
   <title>Document</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+    integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous">
+  </script>
+  <!-- <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css"> -->
+  <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+  <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
   <link rel="stylesheet" href="/shopping_php/css/chitiet.css">
   <link rel="stylesheet" href="/shopping_php/css/home.css">
 </head>
@@ -43,26 +49,22 @@
             </li>";
             }
             ?>
-
-            <li class="nav-item">
-              <a class="nav-link " href='/shopping_php/views/admin/index.php' style="color: red">Admin</a>
-            </li>
           </ul>
           <?php if (isset($_SESSION['userId'])) {
-              echo '<div class="dropdown pb-3 pt-3">
-            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-              id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+              echo "<div class='dropdown pb-3 pt-3'>
+            <a href='#' class='d-flex align-items-center text-white text-decoration-none dropdown-toggle'
+              id='dropdownUser1' data-bs-toggle='dropdown' aria-expanded='false'>
+              <img src='https://github.com/mdo.png' alt='hugenerd' width='30' height='30' class='rounded-circle'>
             </a>
-            <ul class="dropdown-menu dropdown-menu-light text-small shadow">
-              <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" href="#">Profile</a></li>
+            <ul class='dropdown-menu dropdown-menu-light text-small shadow'>
+              <li><a class='dropdown-item' href='#'>Settings</a></li>
+              <li><a class='dropdown-item' href='#'>Profile</a></li>
               <li>
-                <hr class="dropdown-divider">
+                <hr class='dropdown-divider'>
               </li>
-              <li><a class="dropdown-item" href="/shopping_php/controllers/logout.php" >Sign out</a></li>
+              <li><a class='dropdown-item' href='/shopping_php/controllers/logout.php' >Log out</a></li>
             </ul>
-          </div>';
+          </div>";
               echo $_SESSION['username'];
           } else {
               echo '<form class="d-flex" role="search">
