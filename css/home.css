@@ -1,0 +1,231 @@
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+    font-size: 13px;
+}
+
+.container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.row {
+    float: left;
+    width: 100%;
+}
+
+.mb {
+    margin-bottom: 20px;
+}
+
+.mr {
+    margin-right: 0;
+}
+
+.mrs {
+    margin-right: 2.2%;
+}
+
+.demos {
+    background-color: bisque;
+    min-height: 100px;
+}
+
+.boxleft {
+    float: left;
+    width: 68%;
+}
+
+.boxright {
+    float: left;
+    width: 29%;
+}
+
+.boxtieude {
+    color: #333;
+    padding: 10px;
+    background-color: #EEE;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: 1px solid #ccc
+}
+
+.boxctn {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    min-height: 200px;
+    padding: 25px;
+    background-color: #eee;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.formact {
+    line-height: 150%;
+}
+
+.boxctn2 {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+
+    min-height: 200px;
+}
+
+.boxft {
+    padding: 10px;
+    background-color: #EEE;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.banner {
+    min-height: 300px;
+    width: 100%;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+.banner img {
+    width: 530px;
+    height: 300px;
+}
+
+.h2title {
+
+    margin-top: 25px;
+    color: rgb(228, 56, 56);
+    font-size: large;
+    font-weight: bold;
+}
+
+.boxspp {
+    margin-top: 15px;
+    float: left;
+    width: 31%;
+    min-height: 270px;
+    border: 1px solid #cdcdcd;
+    border-radius: 5px;
+    margin-bottom: 12px;
+    text-align: center;
+
+}
+
+.boxspp .img {
+
+    text-align: center;
+}
+
+.price {
+    text-align: center;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+.img {
+    width: 150px;
+
+}
+
+.img img {
+    width: 100%;
+    object-fit: cover;
+    overflow-x: scroll;
+}
+
+.formact input[type="text"],
+.formact input[type="password"] {
+    border: 1px solid #ccc;
+    padding: 6px;
+    border-radius: 5px;
+}
+
+.formact input[type="checkbox"] {
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+}
+
+.formact input[type="submit"] {
+    width: 100px;
+    height: 30px;
+    border: 1px solid #333;
+    background-color: #cdcdcd;
+    border-radius: 5px;
+}
+
+.formact input[type="submit"]:hover {
+
+    background-color: blue;
+
+}
+
+.formact li a {
+    color: rgb(0, 94, 255);
+    text-decoration: none;
+}
+
+.formact li a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+.mndoc ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.mndoc ul li {
+    padding: 10px 20px;
+
+    border-bottom: 1px solid #cdcd;
+}
+
+.mndoc ul li a {
+    color: #666;
+    text-decoration: none;
+}
+
+.mndoc ul li:hover {
+    background-color: #ccc;
+}
+
+.serchbox input[type="text"] {
+    width: 100%;
+    padding: 5px 10px;
+    background-color: #fff;
+    border: 1px solid #666;
+    border: 5px;
+}
+
+.top10 {
+    overflow: hidden;
+    align-items: flex-start;
+}
+
+.top10 img {
+    width: 20%;
+    height: 40px;
+    float: left;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px #ccc solid;
+}
+
+.top10 a {
+    color: #666;
+    text-decoration: none;
+}
+
+.top10 a:hover {
+    color: #000;
+    text-decoration: underline;
+}
