@@ -28,15 +28,15 @@ try {
             $thongbao = 'Người dùng đã tồn tại!';
             header("location: ../views/user/signup.php?mess=$thongbao");
         } else {
-            $q = "INSERT INTO nguoi_dung (name, email, dia_chi, sdt,password) VALUES ('$name', '$email', '$address', '$phone','$hashed_password');";
+            $q = "INSERT INTO `nguoi_dung` (`id`, `name`, `email`, `dia_chi`, `sdt`, `password`) VALUES (NULL, '$name', '$email', '$address', '$phone', '$hashed_password');";
             $statement = $connect->prepare($q);
             $result = $statement->execute();
+            echo $result;
+            die();
             if ($result) {
-                echo 'ngon';
                 $thongbao = 'Đăng kí thành công';
                 header("location: ../views/user/login.php?mess=$thongbao");
             } else {
-                echo 'dell';
                 $thongbao = 'Lỗi web';
                 header("location: ../views/user/signup.php?mess=$thongbao");
             }
@@ -46,4 +46,3 @@ try {
     echo 'ajja';
     // echo $sq1 . '<br>' . $e->getMessage();
 }
-?>
