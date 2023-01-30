@@ -1,7 +1,7 @@
 <?php
 try {
     include '../model/connectDb.php';
-    $id = $_GET["id"];
+    $id = $_GET['id'];
     $q = "DELETE FROM san_pham WHERE `san_pham`.`id` = $id";
     $statement = $connect->prepare($q);
     $result = $statement->execute();

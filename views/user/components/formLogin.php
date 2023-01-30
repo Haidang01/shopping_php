@@ -1,19 +1,14 @@
 <div style="width: 50%; margin: 0 auto;">
   <h1 class="text-center">Đăng nhập</h1>
-  <form action="" method="POST">
+  <form action="/shopping_php/controllers/loginUser.php" method="POST">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-      <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+      <input type="email" class="form-control" name='email' id="exampleInputEmail1" aria-describedby="emailHelp">
     </div>
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1">
+      <input type="password" class="form-control" name='pass' id="exampleInputPassword1">
     </div>
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" style='width:100%' class="btn btn-primary">Submit</button>
   </form>
 </div>

@@ -6,7 +6,6 @@ try {
     $gia = $_POST['gia_sp'];
     $mo_ta = $_POST['mo_ta'];
     $id_dm = $_POST['danhmuc'];
-
     $q = "UPDATE `san_pham` SET `name` = '$name', `price` = '$gia', `mo_ta` = '$mo_ta', `luot_xem` = '44', `id_dm` = '$id_dm' WHERE `san_pham`.`id` = $id;";
     $statement = $connect->prepare($q);
     $result = $statement->execute();
