@@ -31,8 +31,6 @@ try {
             $q = "INSERT INTO `nguoi_dung` (`id`, `name`, `email`, `dia_chi`, `sdt`, `password`) VALUES (NULL, '$name', '$email', '$address', '$phone', '$hashed_password');";
             $statement = $connect->prepare($q);
             $result = $statement->execute();
-            echo $result;
-            die();
             if ($result) {
                 $thongbao = 'Đăng kí thành công';
                 header("location: ../views/user/login.php?mess=$thongbao");
