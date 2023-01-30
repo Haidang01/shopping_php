@@ -32,19 +32,23 @@
             <li class="nav-item">
               <a class="nav-link" href="cart.php">Giỏ hàng</a>
             </li>
-            <li class=" nav-item">
-              <a class="nav-link " href='login.php'>Đăng nhập</a>
+            <?php
+            session_start();
+            if (!isset($_SESSION['userId'])) {
+                echo "<li class='nav-item'>
+              <a class='nav-link' href='login.php'>Đăng nhập</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link " href='signup.php'>Đăng ký</a>
-            </li>
+            <li class='nav-item'>
+              <a class='nav-link' href='signup.php'>Đăng ký</a>
+            </li>";
+            }
+            ?>
+
             <li class="nav-item">
               <a class="nav-link " href='/shopping_php/views/admin/index.php' style="color: red">Admin</a>
             </li>
           </ul>
-          <?php
-          session_start();
-          if (isset($_SESSION['userId'])) {
+          <?php if (isset($_SESSION['userId'])) {
               echo '<div class="dropdown pb-3 pt-3">
             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
               id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -65,8 +69,7 @@
                   <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                   <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>';
-          }
-          ?>
+          } ?>
         </div>
       </div>
     </nav>
