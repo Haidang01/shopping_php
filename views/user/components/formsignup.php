@@ -1,6 +1,6 @@
 <div style="width: 50%; margin: 0 auto;">
   <h1 class="text-center">Đăng ký</h1>
-  <form action="/shopping_php/controllers/signup.php" method="POST">
+  <form action="/shopping_php/controllers/signup.php" method="POST" enctype="multipart/form-data">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email </label>
       <input type="email" class="form-control" required id="exampleInputEmail1" aria-describedby="emailHelp"
@@ -10,10 +10,10 @@
       <label for="exampleInputEmail1" class="form-label">Name</label>
       <input type="text" class="form-control" required name="name" id="exampleInputEmail1" aria-describedby="emailHelp"
         </div>
-      <!-- <div class="mb-3">
+      <div class="mb-3">
         <label for="formFile" class="form-label">Avatar</label>
-        <input class="form-control" type="file" id="formFile" name="avatar">
-      </div> -->
+        <input class="form-control" type="file" id="formFile" name="file">
+      </div>
       <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Password</label>
         <input type="password" class="form-control" required id="exampleInputPassword1" name="pass">

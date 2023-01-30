@@ -7,6 +7,8 @@ try {
     $password = $_POST['pass'];
     $phone = $_POST['phone'];
     $address = $_POST['address'];
+    $file = $_FILES['file'];
+    $hinhanhpath = basename($_FILES['file']['name']);
     if (
         empty($email) ||
         empty($name) ||
@@ -28,15 +30,18 @@ try {
             $thongbao = 'Người dùng đã tồn tại!';
             header("location: ../views/user/signup.php?mess=$thongbao");
         } else {
-            $q = "INSERT INTO `nguoi_dung` (`id`, `name`, `email`, `dia_chi`, `sdt`, `password`) VALUES (NULL, '$name', '$email', '$address', '$phone', '$hashed_password');";
-            $statement = $connect->prepare($q);
-            $result = $statement->execute();
-            if ($result) {
-                $thongbao = 'Đăng kí thành công';
-                header("location: ../views/user/login.php?mess=$thongbao");
-            } else {
-                $thongbao = 'Lỗi web';
-                header("location: ../views/user/signup.php?mess=$thongbao");
+            $target_file = 'imgs/' . $hinhanhpath;
+            if (move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
+                $q = "INSERT INTO `nguoi_dung` (`name`,`anh`,`email`,`dia_chi`, `sdt`, `password`) VALUES ('$name','$target_file', '$email', '$address', '$phone', '$hashed_password');";
+                $statement = $connect->prepare($q);
+                $result = $statement->execute();
+                if ($result) {
+                    $thongbao = 'Đăng kí thành công';
+                    header("location: ../views/user/login.php?mess=$thongbao");
+                } else {
+                    $thongbao = 'Lỗi web';
+                    header("location: ../views/user/signup.php?mess=$thongbao");
+                }
             }
         }
     }

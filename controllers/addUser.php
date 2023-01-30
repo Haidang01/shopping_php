@@ -33,7 +33,7 @@ try {
         } else {
             $target_file = 'imgs/' . $hinhanhpath;
             if (move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
-                $q = "INSERT INTO `nguoi_dung` (`id`, `name`,`anh`, `email`, `dia_chi`, `sdt`, `password`) VALUES (NULL, '$name','$target_file' '$email', '$address', '$phone', '$hashed_password');";
+                $q = "INSERT INTO `nguoi_dung` (`name`,`anh`, `email`,`dia_chi`,`sdt`,`password`) VALUES ('$name','$target_file', '$email', '$address', '$phone', '$hashed_password');";
                 $statement = $connect->prepare($q);
                 $result = $statement->execute();
                 if ($result) {

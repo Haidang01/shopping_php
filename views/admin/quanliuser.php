@@ -33,8 +33,9 @@ $users = $statement1->fetchAll();
         <tr>
           <td>
             <div class="d-flex align-items-center">
-              <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px"
-                class="rounded-circle" />
+              <img src="../../controllers/<?php echo $user[
+                  'anh'
+              ]; ?>" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
               <div class="ms-3">
                 <p class="fw-bold mb-1"><?php echo $user['name']; ?></p>
                 <p class="text-muted mb-0"><?php echo $user['email']; ?></p>

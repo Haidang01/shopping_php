@@ -51,10 +51,11 @@
             ?>
           </ul>
           <?php if (isset($_SESSION['userId'])) {
+              $url = '/shopping_php/controllers/' . $_SESSION['img'];
               echo "<div class='dropdown pb-3 pt-3'>
             <a href='#' class='d-flex align-items-center text-white text-decoration-none dropdown-toggle'
               id='dropdownUser1' data-bs-toggle='dropdown' aria-expanded='false'>
-              <img src='https://github.com/mdo.png' alt='hugenerd' width='30' height='30' class='rounded-circle'>
+              <img src='$url' alt='hugenerd' width='30' height='30' class='rounded-circle'>
             </a>
             <ul class='dropdown-menu dropdown-menu-light text-small shadow'>
               <li><a class='dropdown-item' href='#'>Settings</a></li>
