@@ -22,7 +22,9 @@ try {
                 $_SESSION['userId'] = $user['id'];
                 $_SESSION['username'] = $user['name'];
                 $_SESSION['img'] = $user['anh'];
-                if ($user['role'] == 1) {
+                $_SESSION['role'] = $user['role'];
+
+                if ($_SESSION['role'] == 1) {
                     header(
                         "location: ../views/admin/quanliuser.php?mess=$thongbao"
                     );
@@ -39,4 +41,3 @@ try {
     echo 'ajja';
     // echo $sq1 . '<br>' . $e->getMessage();
 }
-?>

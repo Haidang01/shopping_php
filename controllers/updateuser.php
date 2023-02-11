@@ -6,7 +6,16 @@ try {
     $id = $_POST['id'];
     $role = $_POST['role'];
     $phone = $_POST['phone'];
-    $q = "UPDATE `nguoi_dung` SET `name` = '$name',`dia_chi`='$address',`sdt`='$phone',`role`='$role' WHERE `nguoi_dung`.`id` = $id;";
+    $avatar = $_FILES['avatar']['name'];
+
+    if ($avatar == null) {
+        $q = "UPDATE `nguoi_dung` SET `name` = '$name',`dia_chi`='$address',`sdt`='$phone',`role`='$role' WHERE `nguoi_dung`.`id` = $id;";
+    } else {
+        move_uploaded_file($_FILES['avatar']['tmp_name'], 'imgs/' . $_FILES['avatar']['name']);
+
+        $q = "UPDATE `nguoi_dung` SET `anh` = 'imgs/$avatar', `name` = '$name',`dia_chi`='$address',`sdt`='$phone',`role`='$role' WHERE `nguoi_dung`.`id` = $id;";
+    }
+
     $statement = $connect->prepare($q);
     $result = $statement->execute();
     if ($result) {

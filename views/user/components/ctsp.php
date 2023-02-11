@@ -193,18 +193,17 @@ $dsbl = $statement5->fetchAll();
         <div class="boxtitle">TOP 10 YÊU THÍCH</div>
         <div class="boxcontent">
           <?php foreach ($proTop10 as $sp) {
-            extract($sp);
-            $linksp = '' . $id;
-            echo '<div class="row mb10 top10">
-                                <a href="' .
+            $linksp = '' .  $sp['id'];
+            echo '<div class="mb10 top10">
+                    <a href="' .
               $linksp .
-              '"><img src="https://tse3.mm.bing.net/th?id=OIP.uxuWn4Jhl-b9rFbaK43WnQHaIR&pid=Api&P=0" alt=""></a>
-                                <a href="' .
+              '"><img src="/shopping_php/controllers/' . $sp['anh'] . ' "></a>
+                    <a href="' .
               $linksp .
               '">' .
-              $name .
+              $sp['name'] .
               '</a>
-                            </div>';
+                </div>';
           } ?>
         </div>
       </div>
