@@ -223,7 +223,10 @@
     color: #666;
     text-decoration: none;
 }
-
+a{
+    
+    text-decoration: none;
+}
 .top10 a:hover {
     color: #000;
     text-decoration: underline;
