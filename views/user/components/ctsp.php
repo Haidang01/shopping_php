@@ -43,6 +43,16 @@ $dsbl = $statement5->fetchAll();
           <h4 style="color:red;"><?= $productOne['price'] ?> VNĐ</h4>
           <h5>Lượt xem: <?= $productOne['luot_xem'] ?></h5>
           <p id="mo_ta"><?= $productOne['mo_ta'] ?></p>
+
+          <div class="gio-hang">
+            <form action='/shopping_php/controllers/addToCart.php' method="post">
+              <input type="text" name="id_sp" value="<?= $id ?>" hidden>
+              <input type="text" name="id_user" value='<?php echo isset($_SESSION['userId']) ? $_SESSION['userId'] : ""; ?>' hidden>
+
+              <input type="number" name="so_luong" id="" placeholder="Số lượng" min="1" value="1"> <br>
+              <button type="submit">Thêm giỏ hàng</button>
+            </form>
+          </div>
         </div>
       </div>
 
