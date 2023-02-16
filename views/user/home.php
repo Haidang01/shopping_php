@@ -11,11 +11,19 @@ $statement2->execute();
 $proTop10 = $statement2->fetchAll(); //top 10 sản phẩm //$id = $_GET['id'];
 // Show products by params
 $params = isset($_GET['pm']) ? $_GET['pm'] : 'all';
-if ($params == 'all') {
+if ($params == 'all' && !$_POST['name']) {
     $q3 = 'SELECT * FROM san_pham';
     $statement3 = $connect->prepare($q3);
     $statement3->execute();
     $products = $statement3->fetchAll();
+} elseif ($params == 'all' && $_POST['name']) {
+    $name = $_POST['name'];
+    echo $name;
+    $sql = "SELECT * FROM san_pham WHERE UPPER(REPLACE(name,' ','')) LIKE UPPER('%$name%');";
+    $statement3 = $connect->prepare($sql);
+    $statement3->execute();
+    $products = $statement3->fetchAll();
+    var_dump($products);
 } else {
     $q3 = "SELECT * FROM san_pham WHERE id_dm = '$params'";
     $statement3 = $connect->prepare($q3);
