@@ -1,4 +1,3 @@
-
 <?php
 include '../model/connectDb.php';
 
@@ -20,8 +19,8 @@ if ($products) {
     $statement1->execute();
 } else {
     // insert products
-    $q = "INSERT INTO `gio_hang` (`so_luong`, `id_sp`, `id_user`) VALUES ('$so_luong', '$id_sp', '$id_user');";
-    $statement = $connect->prepare($q);
-    $result = $statement->execute();
+    $q1 = "INSERT INTO `gio_hang` (`so_luong`, `id_sp`, `id_user`) VALUES ('$so_luong', '$id_sp', '$id_user');";
+    $statement1 = $connect->prepare($q1);
+    $statement1->execute();
 }
-header("location: /shopping_php/views/user/cart.php");
+header('location: /shopping_php/views/user/cart.php');

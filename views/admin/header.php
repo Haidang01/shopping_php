@@ -60,5 +60,10 @@
                 <span class="ms-1 d-none d-sm-inline">Quản lí bình luận</span>
               </a>
             </li>
+            <li class="nav-item px-2">
+              <a href="thongke.php" class="nav-link align-middle px-0">
+                <span class="ms-1 d-none d-sm-inline">Thống kê</span>
+              </a>
+            </li>
         </div>
       </div>
