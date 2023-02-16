@@ -6,7 +6,7 @@ $statement1->execute();
 $category = $statement1->fetchAll(); //tất cả danh mục
 
 $q2 =
-    'SELECT * FROM san_pham WHERE luot_xem > 0 ORDER BY luot_xem DESC LIMIT 0, 10;';
+  'SELECT * FROM san_pham WHERE luot_xem > 0 ORDER BY luot_xem DESC LIMIT 0, 10;';
 $statement2 = $connect->prepare($q2);
 $statement2->execute();
 $proTop10 = $statement2->fetchAll(); //top 10 sản phẩm
@@ -37,24 +37,22 @@ $dsbl = $statement5->fetchAll();
           <h2><?= $productOne['name'] ?></h2>
         </div>
         <div class="boxcontent">
-          <div style="text-align: center;"><img style='width:200px; height:200px;'
-              src="/shopping_php/controllers/<?= $productOne[
-                  'anh'
-              ] ?>" alt="" id="img_sp"> </div>
+          <div style="text-align: center;"><img style='width:200px; height:200px;' src="/shopping_php/controllers/<?= $productOne['anh'] ?>" alt="" id="img_sp"> </div>
           <h4 style="color:red;"><?= $productOne['price'] ?> VNĐ</h4>
           <h5>Lượt xem: <?= $productOne['luot_xem'] ?></h5>
           <p id="mo_ta"><?= $productOne['mo_ta'] ?></p>
 
-          <div class="gio-hang">
+          <div class="gio-hang" style="width:250px; ">
             <form action='/shopping_php/controllers/addToCart.php' method="post">
               <input type="text" name="id_sp" value="<?= $id ?>" hidden>
-              <input type="text" name="id_user"
-                value='<?php echo isset($_SESSION['userId'])
-                    ? $_SESSION['userId']
-                    : ''; ?>' hidden>
+              <input type="text" name="id_user" value='<?php echo isset($_SESSION['userId'])
+                                                          ? $_SESSION['userId']
+                                                          : ''; ?>' hidden>
+              <div class="mb-3 d-flex">
+                <input type="number" name="so_luong" id="" placeholder="Số lượng" min="1" value="1" class="form-control" id="exampleInputPassword1">
+                <button type="submit" style='width:100%' class="btn btn-primary">Thêm giỏ hàng</button>
+              </div>
 
-              <input type="number" name="so_luong" id="" placeholder="Số lượng" min="1" value="1"> <br>
-              <button type="submit">Thêm giỏ hàng</button>
             </form>
           </div>
         </div>
@@ -65,47 +63,46 @@ $dsbl = $statement5->fetchAll();
         <div class="boxcontent binhluan">
           <?php foreach ($dsbl as $bl) {
 
-              $q6 =
-                  'SELECT `name`,`anh` FROM `nguoi_dung` where id = ' .
-                  $bl['id_user']; // LẤY TÊN VÀ ẢNH CỦA NGƯỜI DÙNG THÔNG QUA ID BÌNH LUẬN
-              $statement6 = $connect->prepare($q6);
-              $statement6->execute();
-              $user = $statement6->fetch();
+            $q6 =
+              'SELECT `name`,`anh` FROM `nguoi_dung` where id = ' .
+              $bl['id_user']; // LẤY TÊN VÀ ẢNH CỦA NGƯỜI DÙNG THÔNG QUA ID BÌNH LUẬN
+            $statement6 = $connect->prepare($q6);
+            $statement6->execute();
+            $user = $statement6->fetch();
 
-              //load tên người b luận thông qua id_user của từng bình luận
-              ?>
+            //load tên người b luận thông qua id_user của từng bình luận
+          ?>
 
 
-          <div class="list_bl flex">
-            <div class="user_bl">
-              <img src="https://i.pinimg.com/564x/d3/04/9c/d3049c10c2bd0efd3fc8d9b74d334961.jpg" alt="ảnh">
+            <div class="list_bl flex">
+              <div class="user_bl">
+                <img src="/shopping_php/controllers/<?= $user['anh'] ?>" alt="ảnh" style="width: 45px; height: 45px" class="rounded-circle">
+              </div>
+              <div class="noi_dung">
+                <p class="name_user"><?= $user['name'] ?><span class="date"> - <?= $bl['ngay'] ?></span></p>
+                <li class="nd_ct"><?= $bl['noi_dung'] ?></li>
+              </div>
             </div>
-            <div class="noi_dung">
-              <p class="name_user"><?= $user[
-                  'name'
-              ] ?><span class="date"> - <?= $bl['ngay'] ?></span></p>
-              <li class="nd_ct"><?= $bl['noi_dung'] ?></li>
-            </div>
-          </div>
           <?php
           } ?>
 
 
 
 
-          <div class="" style="margin-top: 60px;">
+          <div class="" style="margin-top: 60px; width: 530px;">
             <!-- form bình luận -->
             <form action='/shopping_php/controllers/addBl.php' method="post">
               <input type="text" name="id_sp" value="<?= $id ?>" hidden>
-              <input type="text" name="id_user"
-                value='<?php echo isset($_SESSION['userId'])
-                    ? $_SESSION['userId']
-                    : ''; ?>' hidden>
-              <input type="text" name="nd_bl" id="" placeholder="Bình luận">
-              <button type="submit">Gửi</button>
+              <input type="text" name="id_user" value='<?php echo isset($_SESSION['userId'])
+                                                          ? $_SESSION['userId']
+                                                          : ''; ?>' hidden>
+              <div class="mb-3 d-flex">
+                <input type="text" name="nd_bl" id="" placeholder="nhập bình luận tại đây" class="form-control" id="exampleInputPassword1">
+                <button type="submit" style='width:20%' class="btn btn-primary">Gửi</button>
+              </div>
               <h3 style="color:red; "><?php echo isset($_GET['mess'])
-                  ? $_GET['mess']
-                  : ''; ?></h3>
+                                        ? $_GET['mess']
+                                        : ''; ?></h3>
             </form>
           </div>
         </div>
@@ -120,74 +117,72 @@ $dsbl = $statement5->fetchAll();
         <div class="boxtitle">SẢN PHẨM CÙNG LOẠI</div>
         <div class="boxcontent ">
           <?php foreach ($sp_dm as $spdm) { ?>
-          <div id="ten_sp"><a href="chitiet.php?id=<?= $spdm[
-              'id'
-          ] ?>"><?= $spdm['name'] ?></a></div>
+            <div id="ten_sp"><a href="chitiet.php?id=<?= $spdm['id'] ?>"><?= $spdm['name'] ?></a></div>
           <?php } ?>
         </div>
       </div>
     </div>
     <div class="boxphai">
       <?php
-//include "../boxright.php";
-?>
+      //include "../boxright.php";
+      ?>
       <div class="row mb">
         <div class="boxtitle">TÀI KHOẢN</div>
         <div class="boxcontent formtaikhoan">
           <?php if (isset($_SESSION['user'])) {
-              extract($_SESSION['user']); ?>
-          <div class="row mb10">
-            <img src="upload/<?php
-              //echo $hinh
-              ?>" alt="avata" id="avata">
-            <h3>Xin chào, <?php
-              //echo $ho_ten
-              ?></h3>
-          </div>
-          <div class="row mb10">
-            <li>
-              <a href="index.php?act=quenmk">Quên mật khẩu</a>
-            </li>
-            <li>
-              <a href="index.php?act=edit_taikhoan">Cập nhật tài khoản</a>
-            </li>
-            <?php if ($vai_tro == 1) { ?>
-            <li>
-              <a href="admin/index.php?act=adddm">Đăng nhập Admin</a>
-            </li>
-            <?php } ?>
-            <li>
-              <a href="index.php?act=thoat">Thoát</a>
-            </li>
-          </div>
+            extract($_SESSION['user']); ?>
+            <div class="row mb10">
+              <img src="upload/<?php
+                                //echo $hinh
+                                ?>" alt="avata" id="avata">
+              <h3>Xin chào, <?php
+                            //echo $ho_ten
+                            ?></h3>
+            </div>
+            <div class="row mb10">
+              <li>
+                <a href="index.php?act=quenmk">Quên mật khẩu</a>
+              </li>
+              <li>
+                <a href="index.php?act=edit_taikhoan">Cập nhật tài khoản</a>
+              </li>
+              <?php if ($vai_tro == 1) { ?>
+                <li>
+                  <a href="admin/index.php?act=adddm">Đăng nhập Admin</a>
+                </li>
+              <?php } ?>
+              <li>
+                <a href="index.php?act=thoat">Thoát</a>
+              </li>
+            </div>
           <?php
           } else {
-               ?>
-          <form action="index.php?act=dangnhap" method="post" style="width: 110%;">
-            <div class="row mb10">
-              Tên đăng nhập <br>
-              <input type="text" name="user">
+          ?>
+            <form action="index.php?act=dangnhap" method="post" style="width: 110%;">
+              <div class="row mb10">
+                Tên đăng nhập <br>
+                <input type="text" name="user">
+              </div>
+              <div class="row mb10">
+                Mật khẩu <br>
+                <input type="password" name="pass">
+              </div>
+              <div class="row mb10" style="display: flex;">
+                <div><input type="checkbox" name=""></div>
+                <div>Ghi nhớ tài khoản?</div>
+              </div>
+              <div class="row mb10">
+                <input type="submit" value="Đăng nhập" name="dangnhap">
+              </div>
+            </form>
+            <div>
+              <li>
+                <a href="index.php?act=quenmk">Quên mật khẩu</a>
+              </li>
+              <li>
+                <a href="index.php?act=dangky">Đăng ký thành viên</a>
+              </li>
             </div>
-            <div class="row mb10">
-              Mật khẩu <br>
-              <input type="password" name="pass">
-            </div>
-            <div class="row mb10" style="display: flex;">
-              <div><input type="checkbox" name=""></div>
-              <div>Ghi nhớ tài khoản?</div>
-            </div>
-            <div class="row mb10">
-              <input type="submit" value="Đăng nhập" name="dangnhap">
-            </div>
-          </form>
-          <div>
-            <li>
-              <a href="index.php?act=quenmk">Quên mật khẩu</a>
-            </li>
-            <li>
-              <a href="index.php?act=dangky">Đăng ký thành viên</a>
-            </li>
-          </div>
           <?php
           } ?>
         </div>
@@ -197,14 +192,14 @@ $dsbl = $statement5->fetchAll();
         <div class="boxcontent2 menudoc">
           <ul>
             <?php foreach ($category as $dm) {
-                extract($dm);
-                $linkdm = '' . $id;
-                echo '<li>
+              extract($dm);
+              $linkdm = '' . $id;
+              echo '<li>
                                     <a href="' .
-                    $linkdm .
-                    '">' .
-                    $name .
-                    '</a>
+                $linkdm .
+                '">' .
+                $name .
+                '</a>
                                 </li>';
             } ?>
           </ul>
@@ -220,18 +215,18 @@ $dsbl = $statement5->fetchAll();
         <div class="boxtitle">TOP 10 YÊU THÍCH</div>
         <div class="boxcontent">
           <?php foreach ($proTop10 as $sp) {
-              $linksp = '' . $sp['id'];
-              echo '<div class="mb10 top10">
+            $linksp = '' . $sp['id'];
+            echo '<div class="mb10 top10">
                     <a href="' .
-                  $linksp .
-                  '"><img src="/shopping_php/controllers/' .
-                  $sp['anh'] .
-                  ' "></a>
+              $linksp .
+              '"><img src="/shopping_php/controllers/' .
+              $sp['anh'] .
+              ' "></a>
                     <a href="' .
-                  $linksp .
-                  '">' .
-                  $sp['name'] .
-                  '</a>
+              $linksp .
+              '">' .
+              $sp['name'] .
+              '</a>
                 </div>';
           } ?>
         </div>
@@ -240,37 +235,33 @@ $dsbl = $statement5->fetchAll();
   </div>
 </div>
 <style>
-.flex {
-  margin-top: 20px;
-  display: flex;
-}
+  .flex {
+    margin-top: 20px;
+    display: flex;
+  }
 
-.justify-between {
-  justify-content: flex-start;
-  align-items: center;
-}
+  .justify-between {
+    justify-content: flex-start;
+    align-items: center;
+  }
 
-.noi_dung {
-  margin-left: 15px;
-}
+  .noi_dung {
+    margin-left: 15px;
+  }
 
 
-.user_bl img {
-  width: 50px;
-  border-radius: 50%;
-}
 
-.nd_ct {
-  list-style: circle;
-}
+  .nd_ct {
+    list-style: circle;
+  }
 
-.name_user {
-  font-weight: 600;
-  margin-bottom: 5px;
-}
+  .name_user {
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
 
-.date {
-  color: gray;
-  font-size: 10px;
-}
+  .date {
+    color: gray;
+    font-size: 10px;
+  }
 </style>

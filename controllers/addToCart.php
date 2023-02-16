@@ -1,5 +1,9 @@
 <?php
+session_start();
 include '../model/connectDb.php';
+if (!isset($_SESSION['userId'])) {
+    header('location: /shopping_php/views/user/login.php');
+};
 
 $so_luong = $_POST['so_luong'];
 $id_sp = $_POST['id_sp'];
