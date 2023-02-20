@@ -25,7 +25,8 @@
   <div class="container">
     <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3 py-3">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Xshop</a>
+        <a class="navbar-brand" href="#" class=' fs-3 fw-bold text-danger'><span
+            class='rounded fw-2 text-danger'>Xshop</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -66,7 +67,7 @@
                   echo "<li><a class='dropdown-item' href='/shopping_php/views/admin/quanliuser.php'>Admin</a></li>";
               } ?>
               <li><a class='dropdown-item' href='#'>Settings</a></li>
-              <li><a class='dropdown-item' href='#'>Profile</a></li>
+              <li><a class='dropdown-item' href='/shopping_php/views/user/changeInfo.php'>Profile</a></li>
               <li>
                 <hr class='dropdown-divider'>
               </li>
