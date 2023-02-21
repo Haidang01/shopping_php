@@ -68,6 +68,7 @@
               } ?>
               <li><a class='dropdown-item' href='#'>Settings</a></li>
               <li><a class='dropdown-item' href='/shopping_php/views/user/changeInfo.php'>Profile</a></li>
+              <li><a class='dropdown-item' href='/shopping_php/views/user/changePassword.php'>ChangePassword</a></li>
               <li>
                 <hr class='dropdown-divider'>
               </li>

@@ -3,7 +3,6 @@ include '../model/connectDb.php';
 
 try {
     session_start();
-    // echo $_SESSION['username'] . '' . $_SESSION['img'];
     $id = $_POST['id'];
     $name = $_POST['name'];
     $address = $_POST['address'];
