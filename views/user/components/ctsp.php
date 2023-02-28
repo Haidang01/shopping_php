@@ -1,13 +1,11 @@
 <?php
 include '../../model/connectDb.php';
-//$_SESSION là 1 biến
 $q1 = 'SELECT * FROM danh_muc';
 $statement1 = $connect->prepare($q1);
 $statement1->execute();
 $category = $statement1->fetchAll(); //tất cả danh mục
 
-$q2 = 'SELECT * FROM san_pham WHERE luot_xem > 0 ORDER BY luot_xem DESC LIMIT 0, 10;';
-//ORDER BY DESC sắp xếp từ cao đến thấp rồi in ra 10 sp
+$q2 = 'SELECT * FROM san_pham WHERE luot_xem > 0 ORDER BY luot_xem DESC LIMIT 0, 10;'; //ORDER BY DESC sắp xếp từ cao đến thấp rồi in ra 10 sp
 $statement2 = $connect->prepare($q2);
 $statement2->execute();
 $proTop10 = $statement2->fetchAll(); //top 10 sản phẩm dựa theo 10 sản phẩm có lượt xem cao nhất
@@ -18,14 +16,13 @@ $statement3 = $connect->prepare($q3);
 $statement3->execute();
 $productOne = $statement3->fetch(); //lấy id từ url xuống và fetch tất cả thông tin của sản phẩm có id =  $_GET['id'] -  chi tiết sản phẩm đang xem
 
-$id_dm = $productOne['id_dm'];
-$q4 = "SELECT * FROM san_pham where id_dm = $id_dm";
+$q4 = 'SELECT * FROM san_pham where id_dm = ' . $productOne['id_dm'];
 $statement4 = $connect->prepare($q4);
 $statement4->execute();
 $sp_dm = $statement4->fetchAll(); //sản phẩm cùng loại là in ra tất cả sản phẩm cùng danh mục sản phẩm dang xem chi tiết
 
 // danh sách bình luận
-$q5 = "SELECT * FROM binh_luan where id_sp = $id";
+$q5 = 'SELECT * FROM binh_luan where id_sp = ' . $id;
 $statement5 = $connect->prepare($q5);
 $statement5->execute();
 $dsbl = $statement5->fetchAll();
@@ -68,8 +65,7 @@ $statement6->execute();
         <div class="boxtitle">BÌNH LUẬN</div>
         <div class="boxcontent binhluan">
           <?php foreach ($dsbl as $bl) {
-            $id_user = $bl['id_user'];
-            $q6 = "SELECT `name`,`anh` FROM `nguoi_dung` where id = $id_user"; // LẤY TÊN VÀ ẢNH CỦA NGƯỜI DÙNG THÔNG QUA ID BÌNH LUẬN
+            $q6 = 'SELECT `name`,`anh` FROM `nguoi_dung` where id = ' . $bl['id_user']; // LẤY TÊN VÀ ẢNH CỦA NGƯỜI DÙNG THÔNG QUA ID BÌNH LUẬN
             $statement6 = $connect->prepare($q6);
             $statement6->execute();
             $user = $statement6->fetch();
@@ -132,13 +128,14 @@ $statement6->execute();
       <div class="boxtitle">TÀI KHOẢN</div>
       <div class="boxcontent formtaikhoan">
         <?php if (isset($_SESSION['userId'])) { ?>
-          <div class="">
-            <img src="/shopping_php/controllers/<?= $_SESSION['img'] ?>" alt="avata" style="width: 45px; height: 45px; border-radius: 50%;">
-            <h5>Xin chào, <?= $_SESSION['username'] ?></h5>
+
+          <div class=" mb10 d-flex align-items-center gap-3">
+            <img src="/shopping_php/controllers/<?= $_SESSION['img'] ?>" alt="avata" style="width: 45px !important; height: 45px; border-radius: 50%;" class='rounded-circle'>
+            <h5 class='fs-5 text-primary fw-bold'>Xin chào, <?= $_SESSION['username'] ?></h5>
           </div>
           <div class="row mb10">
             <li>
-              <a href="/shopping_php/views/user/changePassword.php">Đổi mật khẩu</a>
+              <a href="/shopping_php/views/user/changePassword.php">Quên mật khẩu</a>
             </li>
             <li>
               <a href="/shopping_php/views/user/changeInfo.php">Cập nhật tài khoản</a>
@@ -152,6 +149,7 @@ $statement6->execute();
               <a href="/shopping_php/controllers/logout.php">Đăng xuất</a>
             </li>
           </div>
+
         <?php
         } else {
         ?>
