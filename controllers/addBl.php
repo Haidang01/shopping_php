@@ -1,4 +1,3 @@
-
 <?php
 include '../model/connectDb.php';
 $nd_bl = $_POST['nd_bl'];
@@ -20,6 +19,5 @@ if ($nd_bl == null) {
     header("location: /shopping_php/views/user/chitiet.php?id=$id_sp");
 }
 
-<?php ?>
 
 ?>
