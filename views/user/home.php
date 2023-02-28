@@ -61,13 +61,13 @@ if ($params == 'all' && !isset($_POST['name'])) {
         <div class="boxtitle">TÀI KHOẢN</div>
         <div class="boxcontent formtaikhoan">
           <?php if (isset($_SESSION['userId'])) { ?>
-            <div class="row mb10">
+            <div class="">
               <img src="/shopping_php/controllers/<?= $_SESSION['img'] ?>" alt="avata" style="width: 45px !important; height: 45px; border-radius: 50%;" class='rounded-circle'>
               <h5>Xin chào, <?= $_SESSION['username'] ?></h5>
             </div>
             <div class="row mb10">
               <li>
-                <a href="/shopping_php/views/user/changePassword.php">Quên mật khẩu</a>
+                <a href="/shopping_php/views/user/changePassword.php">Đổi mật khẩu</a>
               </li>
               <li>
                 <a href="/shopping_php/views/user/changeInfo.php">Cập nhật tài khoản</a>
