@@ -107,12 +107,7 @@ $statement6->execute();
             </form>
           </div>
         </div>
-        <!-- Phần gửi bình luận thì sẽ lấy 4 thông tin để thêm bình luận: 
-        - id sản phẩm đang xem
-        - id người dùng bình luận ($_SESSION['userId'])
-        - nội dung bình luận
-        -ngày bình luận 
-      => sau đó sẽ gửi thông tin lấy được = Post và gửi đến addbl ở controllers -->
+
 
       </div>
 
@@ -137,7 +132,7 @@ $statement6->execute();
       <div class="boxtitle">TÀI KHOẢN</div>
       <div class="boxcontent formtaikhoan">
         <?php if (isset($_SESSION['userId'])) { ?>
-          <div class="    ">
+          <div class="row mb10">
             <img src="/shopping_php/controllers/<?= $_SESSION['img'] ?>" alt="avata" style="width: 45px; height: 45px; border-radius: 50%;">
             <h5>Xin chào, <?= $_SESSION['username'] ?></h5>
           </div>

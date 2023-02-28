@@ -65,6 +65,13 @@ $gio_hang = $statement->fetchAll();
         <?php } ?>
       </tbody>
     </table>
+    <div class='d-flex justify-content-end fs-4 mt-4 text-danger fw-bold'>Total: <?php
+     $tong=0;
+      for($i = 0; $i <count($gio_hang); $i++){
+        $tong= $tong+($gio_hang[$i]['price']*$gio_hang[$i]['so_luong']);
+      }
+      echo number_format($tong, 0, ',', '.') .' VNĐ';
+     ?></div>
     <?php } else { ?>
     <h2 class='text-danger text-center'>Không có sản phảm</h2>
     <?php } ?>

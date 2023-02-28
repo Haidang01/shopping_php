@@ -61,7 +61,7 @@ if ($params == 'all' && !isset($_POST['name'])) {
         <div class="boxtitle">TÀI KHOẢN</div>
         <div class="boxcontent formtaikhoan">
           <?php if (isset($_SESSION['userId'])) { ?>
-            <div class="">
+            <div class="row mb10">
               <img src="/shopping_php/controllers/<?= $_SESSION['img'] ?>" alt="avata" style="width: 45px !important; height: 45px; border-radius: 50%;" class='rounded-circle'>
               <h5>Xin chào, <?= $_SESSION['username'] ?></h5>
             </div>
