@@ -42,7 +42,8 @@ $statement6->execute();
           <h2><?= $productOne['name'] ?></h2>
         </div>
         <div class="boxcontent">
-          <div style="text-align: center;"><img style='width:200px; height:200px;' src="/shopping_php/controllers/<?= $productOne['anh'] ?>" alt="" id="img_sp"> </div>
+          <div style="text-align: center;"><img style='width:200px; height:200px;'
+              src="/shopping_php/controllers/<?= $productOne['anh'] ?>" alt="" id="img_sp"> </div>
           <h4 style="color:red;"><?= $productOne['price'] ?> VNĐ</h4>
           <h5>Lượt xem: <?= $productOne['luot_xem'] ?></h5>
           <p id="mo_ta"><?= $productOne['mo_ta'] ?></p>
@@ -50,9 +51,11 @@ $statement6->execute();
           <div class="gio-hang" style="width:250px; ">
             <form action='/shopping_php/controllers/addToCart.php' method="post">
               <input type="text" name="id_sp" value="<?= $id ?>" hidden>
-              <input type="text" name="id_user" value='<?php echo isset($_SESSION['userId']) ? $_SESSION['userId'] : ''; ?>' hidden>
+              <input type="text" name="id_user"
+                value='<?php echo isset($_SESSION['userId']) ? $_SESSION['userId'] : ''; ?>' hidden>
               <div class="mb-3 d-flex">
-                <input type="number" name="so_luong" id="" placeholder="Số lượng" min="1" value="1" class="form-control" id="exampleInputPassword1">
+                <input type="number" name="so_luong" id="" placeholder="Số lượng" min="1" value="1" class="form-control"
+                  id="exampleInputPassword1">
                 <button type="submit" style='width:100%' class="btn btn-primary">Thêm giỏ hàng</button>
               </div>
 
@@ -73,15 +76,16 @@ $statement6->execute();
           ?>
 
 
-            <div class="list_bl flex">
-              <div class="user_bl">
-                <img src="/shopping_php/controllers/<?= $user['anh'] ?>" alt="ảnh" style="width: 45px; height: 45px" class="rounded-circle">
-              </div>
-              <div class="noi_dung">
-                <p class="name_user"><?= $user['name'] ?><span class="date"> - <?= $bl['ngay'] ?></span></p>
-                <li class="nd_ct"><?= $bl['noi_dung'] ?></li>
-              </div>
+          <div class="list_bl flex">
+            <div class="user_bl">
+              <img src="/shopping_php/controllers/<?= $user['anh'] ?>" alt="ảnh" style="width: 45px; height: 45px"
+                class="rounded-circle">
             </div>
+            <div class="noi_dung">
+              <p class="name_user"><?= $user['name'] ?><span class="date"> - <?= $bl['ngay'] ?></span></p>
+              <li class="nd_ct"><?= $bl['noi_dung'] ?></li>
+            </div>
+          </div>
           <?php
           } ?>
 
@@ -96,19 +100,15 @@ $statement6->execute();
               <input type="text" name="id_user" value='<?php echo isset($_SESSION['userId']) ? $_SESSION['userId'] : ''; //lấy id của người dùng đang đăng nhập
                                                         ?>' hidden>
               <div class="mb-3 d-flex">
-                <input type="text" name="nd_bl" id="" placeholder="nhập bình luận tại đây" class="form-control" id="exampleInputPassword1">
+                <input type="text" name="nd_bl" id="" placeholder="nhập bình luận tại đây" class="form-control"
+                  id="exampleInputPassword1">
                 <button type="submit" style='width:20%' class="btn btn-primary">Gửi</button>
               </div>
               <h3 style="color:red; "><?php echo isset($_GET['mess']) ? $_GET['mess'] : ''; ?></h3>
             </form>
           </div>
         </div>
-        <!-- Phần gửi bình luận thì sẽ lấy 4 thông tin để thêm bình luận: 
-        - id sản phẩm đang xem
-        - id người dùng bình luận ($_SESSION['userId'])
-        - nội dung bình luận
-        -ngày bình luận 
-      => sau đó sẽ gửi thông tin lấy được = Post và gửi đến addbl ở controllers -->
+
 
       </div>
 
@@ -116,14 +116,15 @@ $statement6->execute();
         <div class="boxtitle">SẢN PHẨM CÙNG LOẠI</div>
         <div class="boxcontent ">
           <?php foreach ($sp_dm as $spdm) { ?>
-            <div class='d-flex my-4 mx-3 gap-2'>
-              <a href="chitiet.php?id=<?= $spdm['id'] ?>">
-                <img src='/shopping_php/controllers/<?php echo $spdm['anh']; ?>' style="width: 45px; height: 45px ; object-fit:cover">
-                <div id="ten_sp"><?= $spdm['name'] ?>
-              </a>
-            </div>
+          <div class='d-flex my-4 mx-3 gap-2'>
+            <a href="chitiet.php?id=<?= $spdm['id'] ?>">
+              <img src='/shopping_php/controllers/<?php echo $spdm['anh']; ?>'
+                style="width: 45px; height: 45px ; object-fit:cover">
+              <div id="ten_sp"><?= $spdm['name'] ?>
+            </a>
+          </div>
         </div>
-      <?php } ?>
+        <?php } ?>
       </div>
     </div>
   </div>
@@ -133,54 +134,55 @@ $statement6->execute();
       <div class="boxtitle">TÀI KHOẢN</div>
       <div class="boxcontent formtaikhoan">
         <?php if (isset($_SESSION['userId'])) { ?>
-          <div class="row mb10">
-            <img src="/shopping_php/controllers/<?= $_SESSION['img'] ?>" alt="avata" style="width: 45px; height: 45px; border-radius: 50%;">
-            <h5>Xin chào, <?= $_SESSION['username'] ?></h5>
-          </div>
-          <div class="row mb10">
-            <li>
-              <a href="/shopping_php/views/user/changePassword.php">Quên mật khẩu</a>
-            </li>
-            <li>
-              <a href="/shopping_php/views/user/changeInfo.php">Cập nhật tài khoản</a>
-            </li>
-            <?php if ($_SESSION['role'] == 1) { ?>
-              <li>
-                <a href="/shopping_php/views/admin/quanliuser.php">Đăng nhập Admin</a>
-              </li>
-            <?php } ?>
-            <li>
-              <a href="/shopping_php/controllers/logout.php">Đăng xuất</a>
-            </li>
-          </div>
+        <div class=" mb10 d-flex align-items-center gap-3">
+          <img src="/shopping_php/controllers/<?= $_SESSION['img'] ?>" alt="avata"
+            style="width: 45px !important; height: 45px; border-radius: 50%;" class='rounded-circle'>
+          <h5 class='fs-5 text-primary fw-bold'>Xin chào, <?= $_SESSION['username'] ?></h5>
+        </div>
+        <div class="row mb10">
+          <li>
+            <a href="/shopping_php/views/user/changePassword.php">Quên mật khẩu</a>
+          </li>
+          <li>
+            <a href="/shopping_php/views/user/changeInfo.php">Cập nhật tài khoản</a>
+          </li>
+          <?php if ($_SESSION['role'] == 1) { ?>
+          <li>
+            <a href="/shopping_php/views/admin/quanliuser.php">Đăng nhập Admin</a>
+          </li>
+          <?php } ?>
+          <li>
+            <a href="/shopping_php/controllers/logout.php">Đăng xuất</a>
+          </li>
+        </div>
         <?php
         } else {
         ?>
-          <form action="/shopping_php/controllers/loginUser.php" method="post" style="width: 110%;">
-            <div class="row mb10">
-              Email đăng nhập <br>
-              <input type="email" name="email">
-            </div>
-            <div class="row mb10">
-              Mật khẩu <br>
-              <input type="password" name="pass">
-            </div>
-            <div class="row mb10" style="display: flex;">
-              <div><input type="checkbox" name=""></div>
-              <div>Ghi nhớ tài khoản?</div>
-            </div>
-            <div class="row mb10">
-              <input type="submit" value="Đăng nhập" name="dangnhap">
-            </div>
-          </form>
-          <div>
-            <li>
-              <a href="#">Quên mật khẩu</a>
-            </li>
-            <li>
-              <a href="index.php?act=dangky">Đăng ký thành viên</a>
-            </li>
+        <form action="/shopping_php/controllers/loginUser.php" method="post" style="width: 110%;">
+          <div class="row mb10">
+            Email đăng nhập <br>
+            <input type="email" name="email">
           </div>
+          <div class="row mb10">
+            Mật khẩu <br>
+            <input type="password" name="pass">
+          </div>
+          <div class="row mb10" style="display: flex;">
+            <div><input type="checkbox" name=""></div>
+            <div>Ghi nhớ tài khoản?</div>
+          </div>
+          <div class="row mb10">
+            <input type="submit" value="Đăng nhập" name="dangnhap">
+          </div>
+        </form>
+        <div>
+          <li>
+            <a href="#">Quên mật khẩu</a>
+          </li>
+          <li>
+            <a href="index.php?act=dangky">Đăng ký thành viên</a>
+          </li>
+        </div>
         <?php
         } ?>
       </div>
@@ -219,33 +221,33 @@ $statement6->execute();
 </div>
 </div>
 <style>
-  .flex {
-    margin-top: 20px;
-    display: flex;
-  }
+.flex {
+  margin-top: 20px;
+  display: flex;
+}
 
-  .justify-between {
-    justify-content: flex-start;
-    align-items: center;
-  }
+.justify-between {
+  justify-content: flex-start;
+  align-items: center;
+}
 
-  .noi_dung {
-    margin-left: 15px;
-  }
+.noi_dung {
+  margin-left: 15px;
+}
 
 
 
-  .nd_ct {
-    list-style: circle;
-  }
+.nd_ct {
+  list-style: circle;
+}
 
-  .name_user {
-    font-weight: 600;
-    margin-bottom: 5px;
-  }
+.name_user {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
 
-  .date {
-    color: gray;
-    font-size: 10px;
-  }
+.date {
+  color: gray;
+  font-size: 10px;
+}
 </style>
