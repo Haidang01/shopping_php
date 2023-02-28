@@ -8,6 +8,8 @@ $users = $statement1->fetchAll();
 ?>
 <div style='background:#f8f9fa;' class="col  py-3">
   <div class="container p-4">
+    <p style="color: red;"><?php echo isset($_GET['mess']) ? $_GET['mess'] : ''; ?></p>
+
     <div style='display:flex' class='d_flex mb-4 justify-content-between'>
       <h2 class='fs-3  d-inline'>Danh sách người dùng</h2>
       <a href='formAddUser.php' class='btn btn-primary'>

@@ -135,7 +135,7 @@ $statement6->execute();
           </div>
           <div class="row mb10">
             <li>
-              <a href="/shopping_php/views/user/changePassword.php">Quên mật khẩu</a>
+              <a href="/shopping_php/views/user/changePassword.php">Đổi mật khẩu</a>
             </li>
             <li>
               <a href="/shopping_php/views/user/changeInfo.php">Cập nhật tài khoản</a>
@@ -194,10 +194,7 @@ $statement6->execute();
         </ul>
       </div>
       <div class="boxfooter searbox">
-        <form class="d-flex mx-5" action="/shopping_php/views/user/home.php" method='post' role="search">
-          <input class="form-control me-2" type="search" name='name' placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+
       </div>
     </div>
     <div class="row">
