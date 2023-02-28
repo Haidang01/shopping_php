@@ -1,15 +1,15 @@
 <div style="width: 50%; margin: 0 auto;">
   <h1 class="text-center">Đăng ký</h1>
+  <h3 style="color: red;"><?php echo isset($_GET['mess']) ? $_GET['mess'] : ''; ?></h3>
+
   <form action="/shopping_php/controllers/signup.php" method="POST" enctype="multipart/form-data">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email </label>
-      <input type="email" class="form-control" required id="exampleInputEmail1" aria-describedby="emailHelp"
-        name="email">
+      <input type="email" class="form-control" required id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
     </div>
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Name</label>
-      <input type="text" class="form-control" required name="name" id="exampleInputEmail1" aria-describedby="emailHelp"
-        </div>
+      <input type="text" class="form-control" required name="name" id="exampleInputEmail1" aria-describedby="emailHelp" </div>
       <div class="mb-3">
         <label for="formFile" class="form-label">Avatar</label>
         <input class="form-control" type="file" id="formFile" name="file">
@@ -20,13 +20,11 @@
       </div>
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Address</label>
-        <input type="text" class="form-control" required id="exampleInputEmail1" aria-describedby="emailHelp"
-          name="address">
+        <input type="text" class="form-control" required id="exampleInputEmail1" aria-describedby="emailHelp" name="address">
       </div>
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Phone</label>
-        <input type="number" class="form-control" required id="exampleInputEmail1" aria-describedby="emailHelp"
-          name="phone">
+        <input type="number" class="form-control" required id="exampleInputEmail1" aria-describedby="emailHelp" name="phone">
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
   </form>

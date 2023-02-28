@@ -6,26 +6,24 @@ try {
     $gia = $_POST['gia_sp'];
     $mo_ta = $_POST['mo_ta'];
     $id_dm = $_POST['danhmuc'];
-    $img_url = 'imgs/' . $_FILES['hinh']['name'];
+    $hinhanhpath = $_FILES['hinh']['name'];
 
-    if ($_FILES['hinh']['name'] == null) {
+    if ($gia <= 0) {
+        $thongbao = 'Giá sản phẩm phải > 0!';
+        header("location: ../views/admin/editsp.php?id=$id&&mess=$thongbao");
+    } else if ($_FILES['hinh']['name'] == null) { //nếu không tải ảnh nên thì lấy lênhj sql trên
         $q = "UPDATE `san_pham` SET `name` = '$name', `price` = '$gia', `mo_ta` = '$mo_ta', `id_dm` = '$id_dm' WHERE `san_pham`.`id` = $id;";
-    } else {
+    } else { //nếu có tải ảnh nên thì lấy lệnh sql dưới và chuyển file ảnh từ web vào dự án
         move_uploaded_file($_FILES['hinh']['tmp_name'], 'imgs/' . $_FILES['hinh']['name']);
-
-        $q = "UPDATE `san_pham` SET `name` = '$name', `price` = '$gia', `mo_ta` = '$mo_ta', `id_dm` = '$id_dm',`anh` = '$img_url'  WHERE `san_pham`.`id` = $id;";
+        $q = "UPDATE `san_pham` SET `name` = '$name', `price` = '$gia', `mo_ta` = '$mo_ta', `id_dm` = '$id_dm',`anh` = 'imgs/$hinhanhpath'  WHERE `san_pham`.`id` = $id;";
     }
     $statement = $connect->prepare($q);
     $result = $statement->execute();
-    if ($result) {
-        $thongbao = 'Sản phẩm đã được cập nhật thành công';
-        header("location: ../views/admin/quanlisp.php?mess=$thongbao");
-    } else {
-        $thongbao = 'Lỗi web';
-        header("location: ../views/admin/quanlisp.php?mess=$thongbao");
-    }
+
+    $thongbao = 'Sản phẩm đã được cập nhật thành công';
+    header("location: ../views/admin/quanlisp.php?mess=$thongbao");
 } catch (PDOException $e) {
-    // echo $sq1 . '<br>' . $e->getMessage();
+    echo "Lỗi query";
 }
 
 $connect = null;

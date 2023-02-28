@@ -39,7 +39,7 @@ $thongke = $statement1->fetchAll();
               <p class="text-muted mb-0"><?php echo number_format($tke['gia_min']); ?> VNĐ</p>
             </td>
             <td>
-              <p class="text-muted mb-0"><?php echo number_format($tke['gia_max']); ?> VNĐ</p>
+              <p class="text-muted mb-0"><span style="color: red;"><?php echo number_format($tke['gia_max']); ?> VNĐ </span></p>
             </td>
             <td>
               <p class="text-muted mb-0"><?php echo number_format($tke['gia_avg']); ?> VNĐ</p>
