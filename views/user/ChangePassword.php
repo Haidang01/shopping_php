@@ -14,15 +14,15 @@ $user = $statement1->fetch();
   <form action="/shopping_php/controllers/changePassword.php" method="POST" enctype="multipart/form-data">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Mật khẩu cũ</label>
-      <input type="text" class="form-control" required name="mkcu">
+      <input type="password" class="form-control" required name="mkcu">
     </div>
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Mật khẩu mới</label>
-      <input type="text" class="form-control" required name="mkmoi">
+      <input type="password" class="form-control" required name="mkmoi">
     </div>
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Xác nhận mật khẩu</label>
-      <input type="text" class="form-control" required name="mkmoi1">
+      <input type="password" class="form-control" required name="mkmoi1">
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>

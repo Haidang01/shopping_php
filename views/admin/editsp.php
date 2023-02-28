@@ -10,23 +10,15 @@ $productOne = $statement1->fetch();
 $q2 = 'SELECT * FROM danh_muc';
 $statement = $connect->prepare($q2);
 $statement->execute();
-$category = $statement->fetchAll();
-
-// $q1 = "SELECT * FROM san_pham where id = $id";
-// $statement1 = $connect->prepare($q1);
-// $statement1->execute();
-// $productOne = $statement1->fetch();
-
-// $q1 = "SELECT * FROM danh_muc where id =" .  $productOne['id_dm'];
-// $statement1 = $connect->prepare($q1);
-// $statement1->execute();
-// $cateOne = $statement1->fetch();
+$category = $statement->fetchAll(); //in ra tất cả danh mục cho admin thay đổi nếu muốn
 ?>
 
 
 
 <div style="width: 50%; margin: 0 auto;" class='container p-5'>
   <h1 class="text-center mb-4">Cập nhật sản phẩm</h1>
+  <h3 style="color: red;"><?php echo isset($_GET['mess']) ? $_GET['mess'] : ''; ?></h3>
+
   <form action='../../controllers/updatesp.php' method='post' enctype="multipart/form-data">
     <input type="text" name="id" value="<?= $productOne['id'] ?>" hidden>
     <div class="mb-3">
@@ -58,8 +50,4 @@ $category = $statement->fetchAll();
     </div>
     <button type="submit" style='width:100%' class="btn btn-primary">Cập nhật</button>
   </form>
-  <h3 style="color: red;"><?php echo isset($_GET['mess'])
-                            ? $_GET['mess']
-                            : ''; ?></h3>
-
 </div>

@@ -1,5 +1,7 @@
 <div style="width: 50%; margin: 0 auto;">
   <h1 class="text-center">Đăng nhập</h1>
+  <h3 style="color: red;"><?php echo isset($_GET['mess']) ? $_GET['mess'] : ''; ?></h3>
+
   <form action="/shopping_php/controllers/loginUser.php" method="POST">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email address</label>

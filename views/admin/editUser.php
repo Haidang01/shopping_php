@@ -10,6 +10,7 @@ $user = $statement1->fetch();
 ?>
 <div style="width: 50%; margin: 0 auto;" class='container p-5'>
   <h1 class="text-center">Cập nhật người dùng</h1>
+  <h3 style="color: red;"><?php echo isset($_GET['mess']) ? $_GET['mess'] : ''; ?></h3>
 
   <form action="/shopping_php/controllers/updateUser.php" method="POST" enctype="multipart/form-data">
     <input type="text" name="id" value="<?= $user['id'] ?>" hidden>
@@ -38,7 +39,4 @@ $user = $statement1->fetch();
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
   </form>
-  <h3 style="color: red;"><?php echo isset($_GET['mess'])
-                            ? $_GET['mess']
-                            : ''; ?></h3>
 </div>
