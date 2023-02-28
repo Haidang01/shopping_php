@@ -43,7 +43,7 @@ $product = $statement1->fetchAll();
               </div>
             </td>
             <td width=15%>
-              <p class="text-muted mb-0"><span style="color: red;"><?= $pro['price'] ?> VNĐ</span></p>
+              <p class="text-muted mb-0"><span style="color: red;"><?= number_format($pro['price']) ?> VNĐ</span></p>
             </td>
             <td width=25%>
               <p class="text-muted mb-0" style="font-size: 13px;"><?= $pro['mo_ta'] ?></p>

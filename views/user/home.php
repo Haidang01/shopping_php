@@ -48,7 +48,7 @@
                   <div class=" row img">
                     <a href="./chitiet.php?id=<?= $top['id'] ?>"><img src='../../controllers/<?php echo $top['anh']; ?>' style="height:200px; object-fit:cover;" alt=""></a>
                   </div>
-                  <p class="price"><?php echo $top['price']; ?></p>
+                  <p class="price" style="color: red;"><?php echo number_format($top['price']) ?> VNĐ</p>
                   <span class="prices"><?php echo $top['name']; ?></span>
                 </div>
             <?php }
